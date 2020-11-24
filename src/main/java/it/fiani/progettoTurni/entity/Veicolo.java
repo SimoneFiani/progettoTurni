@@ -1,11 +1,13 @@
 package it.fiani.progettoTurni.entity;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -13,9 +15,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Veicolo {
 
-	public enum TipoVeicolo {
-		AM, MSB, MSA
-	}
+//	private enum TipoVeicolo {
+//		AM, MSB, MSA
+//	}
 //	AM: Automedica, MSB: Ambulanza senza medico, MSA: Ambulanza con medico.
 
 	// ==================================================================================
@@ -23,11 +25,12 @@ public class Veicolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+//	private TipoVeicolo tipoVeicolo;
 	private String codice;
 	private String targa;
 	private String entiDiAppartenenza;
-	private NumeroTelefono numeroTelefono;
+	@OneToMany
+	private List<NumeroDiTelefono> numeroTelefono;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;
@@ -68,11 +71,11 @@ public class Veicolo {
 		this.entiDiAppartenenza = entiDiAppartenenza;
 	}
 
-	public NumeroTelefono getNumeroTelefono() {
+	public List<NumeroDiTelefono> getNumeroTelefono() {
 		return numeroTelefono;
 	}
 
-	public void setNumeroTelefono(NumeroTelefono numeroTelefono) {
+	public void setNumeroTelefono(List<NumeroDiTelefono> numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
 
@@ -91,5 +94,13 @@ public class Veicolo {
 	public void setInstanteUltimoAggiornamento(OffsetDateTime instanteUltimoAggiornamento) {
 		this.instanteUltimoAggiornamento = instanteUltimoAggiornamento;
 	}
+
+//	public TipoVeicolo getTipoVeicolo() {
+//		return tipoVeicolo;
+//	}
+//
+//	public void setTipoVeicolo(TipoVeicolo tipoVeicolo) {
+//		this.tipoVeicolo = tipoVeicolo;
+//	}
 
 }

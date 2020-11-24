@@ -1,6 +1,5 @@
 package it.fiani.progettoTurni.entity;
 
-import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -8,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -15,13 +15,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Turno {
 
-	public enum TipoTurno {
-		NOTTURNO, DIURNO
-	}
-
-	public enum TipoZona {
-		ROMA, PROVINCIA
-	}
+//	private enum TipoTurno {
+//		NOTTURNO, DIURNO
+//	}
+//
+//	private enum TipoZona {
+//		ROMA, PROVINCIA
+//	}
 
 	// ==================================================================================
 
@@ -30,13 +30,14 @@ public class Turno {
 	private Long id;
 
 	private Veicolo veicolo;
+	@OneToMany
 	private List<Dipendente> dipendenti;
-	private TipoTurno tipoTurno;
-	private TipoZona tipoZona;
+//	private TipoTurno tipoTurno;
+//	private TipoZona tipoZona;
 	private String postazione;
-	private LocalTime istanteInizio;
-	private LocalTime istanteFine;
-	private LocalTime istanteFineEffettivo;
+	private OffsetDateTime istanteInizio;
+	private OffsetDateTime istanteFine;
+	private OffsetDateTime istanteFineEffettivo;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;
@@ -69,21 +70,21 @@ public class Turno {
 		this.dipendenti = dipendenti;
 	}
 
-	public TipoTurno getTipoTurno() {
-		return tipoTurno;
-	}
-
-	public void setTipoTurno(TipoTurno tipoTurno) {
-		this.tipoTurno = tipoTurno;
-	}
-
-	public TipoZona getTipoZona() {
-		return tipoZona;
-	}
-
-	public void setTipoZona(TipoZona tipoZona) {
-		this.tipoZona = tipoZona;
-	}
+//	public TipoTurno getTipoTurno() {
+//		return tipoTurno;
+//	}
+//
+//	public void setTipoTurno(TipoTurno tipoTurno) {
+//		this.tipoTurno = tipoTurno;
+//	}
+//
+//	public TipoZona getTipoZona() {
+//		return tipoZona;
+//	}
+//
+//	public void setTipoZona(TipoZona tipoZona) {
+//		this.tipoZona = tipoZona;
+//	}
 
 	public String getPostazione() {
 		return postazione;
@@ -93,27 +94,27 @@ public class Turno {
 		this.postazione = postazione;
 	}
 
-	public LocalTime getIstanteInizio() {
+	public OffsetDateTime getIstanteInizio() {
 		return istanteInizio;
 	}
 
-	public void setIstanteInizio(LocalTime istanteInizio) {
+	public void setIstanteInizio(OffsetDateTime istanteInizio) {
 		this.istanteInizio = istanteInizio;
 	}
 
-	public LocalTime getIstanteFine() {
+	public OffsetDateTime getIstanteFine() {
 		return istanteFine;
 	}
 
-	public void setIstanteFine(LocalTime istanteFine) {
+	public void setIstanteFine(OffsetDateTime istanteFine) {
 		this.istanteFine = istanteFine;
 	}
 
-	public LocalTime getIstanteFineEffettivo() {
+	public OffsetDateTime getIstanteFineEffettivo() {
 		return istanteFineEffettivo;
 	}
 
-	public void setIstanteFineEffettivo(LocalTime istanteFineEffettivo) {
+	public void setIstanteFineEffettivo(OffsetDateTime istanteFineEffettivo) {
 		this.istanteFineEffettivo = istanteFineEffettivo;
 	}
 

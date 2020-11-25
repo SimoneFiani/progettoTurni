@@ -3,11 +3,7 @@ package it.fiani.progettoTurni.entity;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -29,7 +25,10 @@ public class Turno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	// FIX:  Could not determine type for: it.fiani.progettoTurni.entity.Veicolo, at table: turno, for columns: [org.hibernate.mapping.Column(veicolo)]
+	@ManyToOne
 	private Veicolo veicolo;
+
 	@OneToMany
 	private List<Dipendente> dipendenti;
 //	private TipoTurno tipoTurno;

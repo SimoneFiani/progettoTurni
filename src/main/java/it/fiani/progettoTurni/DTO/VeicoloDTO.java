@@ -10,7 +10,8 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
-@Entity
+// FIX: Could not determine type for: it.fiani.progettoTurni.DTO.NumeroTelefonoDTO, at table: veicolodto, for columns: [org.hibernate.mapping.Column(numero_telefono)]
+// QUesto è un DTO, non un entity!!!
 public class VeicoloDTO {
 
 	public enum TipoVeicolo {

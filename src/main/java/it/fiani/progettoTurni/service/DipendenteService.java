@@ -16,11 +16,18 @@ public class DipendenteService {
 	@Autowired
 	public DipendenteService(DipendenteRepository dipendenteRepository) {
 		this.dipendenteRepository = dipendenteRepository;
+
 	}
 
 	public List<Dipendente> mostraListaDipendenti() {
 
 		return (List<Dipendente>) dipendenteRepository.findAll();
+	}
+
+	public void salvaDipendente(Dipendente dipendente) {
+
+		dipendenteRepository.save(dipendente);
+
 	}
 
 }

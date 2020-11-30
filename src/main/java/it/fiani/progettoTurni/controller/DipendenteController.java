@@ -36,8 +36,7 @@ public class DipendenteController {
 
 	@PostMapping
 	public void salvaDipendente(DipendenteDTO dipendenteDTO) {
-		Dipendente dipendente = null;
-
+		Dipendente dipendente = convertiAEntity(dipendenteDTO);
 		dipendenteService.salvaDipendente(dipendente);
 	}
 

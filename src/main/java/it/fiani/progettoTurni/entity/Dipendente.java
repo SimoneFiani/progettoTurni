@@ -13,9 +13,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Dipendente {
 
-//	private enum TipoMansione {
-//		BARELLIERE, INFERMIERE, MEDICO, AUTISTA
-//	}
+	private enum TipoMansione {
+		BARELLIERE, INFERMIERE, MEDICO, AUTISTA
+	}
 
 	// ==================================================================================
 
@@ -25,7 +25,7 @@ public class Dipendente {
 
 	private String nome;
 	private String cognome;
-//	private TipoMansione mansione;
+	private TipoMansione mansione;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;
@@ -58,13 +58,13 @@ public class Dipendente {
 		this.cognome = cognome;
 	}
 
-//	public TipoMansione getMansione() {
-//		return mansione;
-//	}
-//
-//	public void setMansione(TipoMansione mansione) {
-//		this.mansione = mansione;
-//	}
+	public TipoMansione getMansione() {
+		return mansione;
+	}
+
+	public void setMansione(TipoMansione mansione) {
+		this.mansione = mansione;
+	}
 
 	public OffsetDateTime getInstanteCreazione() {
 		return instanteCreazione;

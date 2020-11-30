@@ -3,7 +3,12 @@ package it.fiani.progettoTurni.entity;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -11,13 +16,13 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Turno {
 
-//	private enum TipoTurno {
-//		NOTTURNO, DIURNO
-//	}
-//
-//	private enum TipoZona {
-//		ROMA, PROVINCIA
-//	}
+	private enum TipoTurno {
+		NOTTURNO, DIURNO
+	}
+
+	private enum TipoZona {
+		ROMA, PROVINCIA
+	}
 
 	// ==================================================================================
 
@@ -25,14 +30,15 @@ public class Turno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	// FIX:  Could not determine type for: it.fiani.progettoTurni.entity.Veicolo, at table: turno, for columns: [org.hibernate.mapping.Column(veicolo)]
+	// FIX: Could not determine type for: it.fiani.progettoTurni.entity.Veicolo, at
+	// table: turno, for columns: [org.hibernate.mapping.Column(veicolo)]
 	@ManyToOne
 	private Veicolo veicolo;
 
 	@OneToMany
 	private List<Dipendente> dipendenti;
-//	private TipoTurno tipoTurno;
-//	private TipoZona tipoZona;
+	private TipoTurno tipoTurno;
+	private TipoZona tipoZona;
 	private String postazione;
 	private OffsetDateTime istanteInizio;
 	private OffsetDateTime istanteFine;
@@ -69,21 +75,21 @@ public class Turno {
 		this.dipendenti = dipendenti;
 	}
 
-//	public TipoTurno getTipoTurno() {
-//		return tipoTurno;
-//	}
-//
-//	public void setTipoTurno(TipoTurno tipoTurno) {
-//		this.tipoTurno = tipoTurno;
-//	}
-//
-//	public TipoZona getTipoZona() {
-//		return tipoZona;
-//	}
-//
-//	public void setTipoZona(TipoZona tipoZona) {
-//		this.tipoZona = tipoZona;
-//	}
+	public TipoTurno getTipoTurno() {
+		return tipoTurno;
+	}
+
+	public void setTipoTurno(TipoTurno tipoTurno) {
+		this.tipoTurno = tipoTurno;
+	}
+
+	public TipoZona getTipoZona() {
+		return tipoZona;
+	}
+
+	public void setTipoZona(TipoZona tipoZona) {
+		this.tipoZona = tipoZona;
+	}
 
 	public String getPostazione() {
 		return postazione;

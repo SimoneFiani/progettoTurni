@@ -15,9 +15,9 @@ import org.hibernate.annotations.UpdateTimestamp;
 @Entity
 public class Veicolo {
 
-//	private enum TipoVeicolo {
-//		AM, MSB, MSA
-//	}
+	private enum TipoVeicolo {
+		AM, MSB, MSA
+	}
 //	AM: Automedica, MSB: Ambulanza senza medico, MSA: Ambulanza con medico.
 
 	// ==================================================================================
@@ -25,7 +25,7 @@ public class Veicolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-//	private TipoVeicolo tipoVeicolo;
+	private TipoVeicolo tipoVeicolo;
 	private String codice;
 	private String targa;
 	private String entiDiAppartenenza;
@@ -95,12 +95,12 @@ public class Veicolo {
 		this.instanteUltimoAggiornamento = instanteUltimoAggiornamento;
 	}
 
-//	public TipoVeicolo getTipoVeicolo() {
-//		return tipoVeicolo;
-//	}
-//
-//	public void setTipoVeicolo(TipoVeicolo tipoVeicolo) {
-//		this.tipoVeicolo = tipoVeicolo;
-//	}
+	public TipoVeicolo getTipoVeicolo() {
+		return tipoVeicolo;
+	}
+
+	public void setTipoVeicolo(TipoVeicolo tipoVeicolo) {
+		this.tipoVeicolo = tipoVeicolo;
+	}
 
 }

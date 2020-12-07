@@ -1,6 +1,7 @@
 package it.fiani.progettoTurni.controller;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,20 +32,20 @@ public class DipendenteController {
 	}
 
 	@GetMapping
-	public List<Dipendente> mostraLista() {
-		return dipendenteService.mostraListaDipendenti();
+	public List<DipendenteDTO> mostraLista() {
+		return dipendenteService.mostraListaDipendenti().stream().map(dipendente -> convertiADTO(dipendente))
+				.collect(Collectors.toList());
 
 	}
 
 	@PostMapping
 	public void salvaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
-		Dipendente dipendente = convertiAEntity(dipendenteDTO);
-		dipendenteService.salvaDipendente(dipendente);
+		dipendenteService.salvaDipendente(convertiAEntity(dipendenteDTO));
 	}
 
 	@PutMapping("/{idDipendente}")
-	public Dipendente mostraDipendente(@PathVariable Long idDipendente) {
-		return dipendenteService.mostraDipendente(idDipendente);
+	public DipendenteDTO mostraDipendente(@PathVariable Long idDipendente) {
+		return convertiADTO(dipendenteService.mostraDipendente(idDipendente));
 	}
 
 	@DeleteMapping("/{idDipendente}")

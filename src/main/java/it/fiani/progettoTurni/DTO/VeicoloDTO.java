@@ -28,7 +28,7 @@ public class VeicoloDTO {
 	private String codice;
 	private String targa;
 	private String entiDiAppartenenza;
-	private NumeroTelefonoDTO numeroTelefono;
+	private NumeroDiTelefonoDTO numeroTelefono;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;
@@ -69,11 +69,11 @@ public class VeicoloDTO {
 		this.entiDiAppartenenza = entiDiAppartenenza;
 	}
 
-	public NumeroTelefonoDTO getNumeroTelefono() {
+	public NumeroDiTelefonoDTO getNumeroTelefono() {
 		return numeroTelefono;
 	}
 
-	public void setNumeroTelefono(NumeroTelefonoDTO numeroTelefono) {
+	public void setNumeroTelefono(NumeroDiTelefonoDTO numeroTelefono) {
 		this.numeroTelefono = numeroTelefono;
 	}
 

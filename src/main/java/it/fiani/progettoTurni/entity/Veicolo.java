@@ -30,7 +30,7 @@ public class Veicolo {
 	private String targa;
 	private String entiDiAppartenenza;
 	@OneToMany
-	private List<NumeroDiTelefono> numeroTelefono;
+	private List<NumeroDiTelefono> numeroDiTelefono;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;
@@ -72,11 +72,11 @@ public class Veicolo {
 	}
 
 	public List<NumeroDiTelefono> getNumeroTelefono() {
-		return numeroTelefono;
+		return numeroDiTelefono;
 	}
 
-	public void setNumeroTelefono(List<NumeroDiTelefono> numeroTelefono) {
-		this.numeroTelefono = numeroTelefono;
+	public void setNumeroTelefono(List<NumeroDiTelefono> numeroDiTelefono) {
+		this.numeroDiTelefono = numeroDiTelefono;
 	}
 
 	public OffsetDateTime getInstanteCreazione() {

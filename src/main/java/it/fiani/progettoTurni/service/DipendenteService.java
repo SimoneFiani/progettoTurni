@@ -20,14 +20,19 @@ public class DipendenteService {
 	}
 
 	public List<Dipendente> mostraListaDipendenti() {
-
 		return (List<Dipendente>) dipendenteRepository.findAll();
 	}
 
 	public void salvaDipendente(Dipendente dipendente) {
-
 		dipendenteRepository.save(dipendente);
+	}
 
+	public Dipendente mostraDipendente(Long idDipendente) {
+		return dipendenteRepository.findById(idDipendente).get();
+	}
+
+	public void cancellaDipendente(Long idDipendente) {
+		dipendenteRepository.deleteById(idDipendente);
 	}
 
 }

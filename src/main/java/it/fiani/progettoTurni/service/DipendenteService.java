@@ -27,12 +27,16 @@ public class DipendenteService {
 		dipendenteRepository.save(dipendente);
 	}
 
-	public Dipendente mostraDipendente(Long idDipendente) {
+	public Dipendente prelevaDipendente(Long idDipendente) {
 		return dipendenteRepository.findById(idDipendente).get();
 	}
 
 	public void cancellaDipendente(Long idDipendente) {
 		dipendenteRepository.deleteById(idDipendente);
+	}
+
+	public void modificaDipendente(Dipendente dipendente) {
+		dipendenteRepository.save(dipendente);
 	}
 
 }

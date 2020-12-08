@@ -43,9 +43,17 @@ public class DipendenteController {
 		dipendenteService.salvaDipendente(convertiAEntity(dipendenteDTO));
 	}
 
-	@PutMapping("/{idDipendente}")
+	@GetMapping("/{idDipendente}")
 	public DipendenteDTO mostraDipendente(@PathVariable Long idDipendente) {
-		return convertiADTO(dipendenteService.mostraDipendente(idDipendente));
+		return convertiADTO(dipendenteService.prelevaDipendente(idDipendente));
+	}
+
+	@PutMapping("/{idDipendente}")
+	public void modificaDipendente(@PathVariable DipendenteDTO dipendenteDTO) {
+		if (dipendenteDTO.getId() == null) {
+			throw new IllegalArgumentException("l'id del dipendente non puo essere null");
+		}
+		dipendenteService.modificaDipendente(convertiAEntity(dipendenteDTO));
 	}
 
 	@DeleteMapping("/{idDipendente}")

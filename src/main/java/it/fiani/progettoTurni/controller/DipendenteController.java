@@ -49,7 +49,7 @@ public class DipendenteController {
 	}
 
 	@PutMapping("/{idDipendente}")
-	public void modificaDipendente(@PathVariable DipendenteDTO dipendenteDTO) {
+	public void modificaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
 		if (dipendenteDTO.getId() == null) {
 			throw new IllegalArgumentException("l'id del dipendente non puo essere null");
 		}

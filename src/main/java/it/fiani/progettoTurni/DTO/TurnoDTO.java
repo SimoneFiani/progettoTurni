@@ -4,7 +4,6 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -12,6 +11,9 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Data;
+
+@Data
 public class TurnoDTO {
 
 	public enum TipoTurno {
@@ -43,93 +45,5 @@ public class TurnoDTO {
 	private OffsetDateTime instanteUltimoAggiornamento;
 
 	// ==================================================================================
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public VeicoloDTO getVeicolo() {
-		return veicolo;
-	}
-
-	public void setVeicolo(VeicoloDTO veicolo) {
-		this.veicolo = veicolo;
-	}
-
-	public List<DipendenteDTO> getDipendenti() {
-		return dipendenti;
-	}
-
-	public void setDipendenti(List<DipendenteDTO> dipendenti) {
-		this.dipendenti = dipendenti;
-	}
-
-	public TipoTurno getTipoTurno() {
-		return tipoTurno;
-	}
-
-	public void setTipoTurno(TipoTurno tipoTurno) {
-		this.tipoTurno = tipoTurno;
-	}
-
-	public TipoZona getTipoZona() {
-		return tipoZona;
-	}
-
-	public void setTipoZona(TipoZona tipoZona) {
-		this.tipoZona = tipoZona;
-	}
-
-	public String getPostazione() {
-		return postazione;
-	}
-
-	public void setPostazione(String postazione) {
-		this.postazione = postazione;
-	}
-
-	public LocalTime getIstanteInizio() {
-		return istanteInizio;
-	}
-
-	public void setIstanteInizio(LocalTime istanteInizio) {
-		this.istanteInizio = istanteInizio;
-	}
-
-	public LocalTime getIstanteFine() {
-		return istanteFine;
-	}
-
-	public void setIstanteFine(LocalTime istanteFine) {
-		this.istanteFine = istanteFine;
-	}
-
-	public LocalTime getIstanteFineEffettivo() {
-		return istanteFineEffettivo;
-	}
-
-	public void setIstanteFineEffettivo(LocalTime istanteFineEffettivo) {
-		this.istanteFineEffettivo = istanteFineEffettivo;
-	}
-
-	public OffsetDateTime getInstanteCreazione() {
-		return instanteCreazione;
-	}
-
-	public void setInstanteCreazione(OffsetDateTime instanteCreazione) {
-		this.instanteCreazione = instanteCreazione;
-	}
-
-	public OffsetDateTime getInstanteUltimoAggiornamento() {
-		return instanteUltimoAggiornamento;
-	}
-
-	public void setInstanteUltimoAggiornamento(OffsetDateTime instanteUltimoAggiornamento) {
-		this.instanteUltimoAggiornamento = instanteUltimoAggiornamento;
-	}
 
 }

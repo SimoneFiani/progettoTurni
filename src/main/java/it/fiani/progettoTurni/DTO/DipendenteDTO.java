@@ -9,6 +9,9 @@ import javax.persistence.Id;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import lombok.Data;
+
+@Data
 public class DipendenteDTO {
 
 	public enum TipoMansione {
@@ -31,53 +34,5 @@ public class DipendenteDTO {
 	private OffsetDateTime instanteUltimoAggiornamento;
 
 	// ==================================================================================
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public String getCognome() {
-		return cognome;
-	}
-
-	public void setCognome(String cognome) {
-		this.cognome = cognome;
-	}
-
-	public TipoMansione getMansione() {
-		return mansione;
-	}
-
-	public void setMansione(TipoMansione mansione) {
-		this.mansione = mansione;
-	}
-
-	public OffsetDateTime getInstanteCreazione() {
-		return instanteCreazione;
-	}
-
-	public void setInstanteCreazione(OffsetDateTime instanteCreazione) {
-		this.instanteCreazione = instanteCreazione;
-	}
-
-	public OffsetDateTime getInstanteUltimoAggiornamento() {
-		return instanteUltimoAggiornamento;
-	}
-
-	public void setInstanteUltimoAggiornamento(OffsetDateTime instanteUltimoAggiornamento) {
-		this.instanteUltimoAggiornamento = instanteUltimoAggiornamento;
-	}
 
 }

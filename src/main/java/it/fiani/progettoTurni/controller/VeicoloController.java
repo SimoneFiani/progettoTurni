@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,19 +16,15 @@ import org.springframework.web.bind.annotation.RestController;
 import it.fiani.progettoTurni.DTO.VeicoloDTO;
 import it.fiani.progettoTurni.entity.Veicolo;
 import it.fiani.progettoTurni.service.VeicoloService;
+import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping("/veicolo")
+@RequestMapping("/veicoli")
+@AllArgsConstructor
 public class VeicoloController {
 
-	VeicoloService veicoloService;
-	ModelMapper modelMapper;
-
-	@Autowired
-	public VeicoloController(VeicoloService veicoloService, ModelMapper modelMapper) {
-		this.veicoloService = veicoloService;
-		this.modelMapper = modelMapper;
-	}
+	private final VeicoloService veicoloService;
+	private final ModelMapper modelMapper;
 
 	@GetMapping
 	public List<VeicoloDTO> mostraLista() {

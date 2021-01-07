@@ -30,7 +30,6 @@ public class VeicoloController {
 	public List<VeicoloDTO> mostraLista() {
 		return veicoloService.mostraListaVeicoli().stream().map(veicolo -> convertiInDTO(veicolo))
 				.collect(Collectors.toList());
-
 	}
 
 	@PostMapping

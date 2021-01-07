@@ -13,6 +13,8 @@ import javax.persistence.OneToMany;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.sun.istack.NotNull;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -35,6 +37,7 @@ public class Turno {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@ManyToOne
+	@NotNull
 	private Veicolo veicolo;
 
 	@OneToMany
@@ -42,6 +45,8 @@ public class Turno {
 
 	private TipoTurno tipoTurno;
 	private TipoZona tipoZona;
+
+	@NotNull
 	private String postazione;
 	private OffsetDateTime istanteInizio;
 	private OffsetDateTime istanteFine;

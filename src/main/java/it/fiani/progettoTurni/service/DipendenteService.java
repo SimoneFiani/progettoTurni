@@ -2,32 +2,27 @@ package it.fiani.progettoTurni.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.fiani.progettoTurni.entity.Dipendente;
 import it.fiani.progettoTurni.repository.DipendenteRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class DipendenteService {
 
-	DipendenteRepository dipendenteRepository;
-
-	@Autowired
-	public DipendenteService(DipendenteRepository dipendenteRepository) {
-		this.dipendenteRepository = dipendenteRepository;
-
-	}
+	private final DipendenteRepository dipendenteRepository;
 
 	public List<Dipendente> mostraListaDipendenti() {
 		return (List<Dipendente>) dipendenteRepository.findAll();
 	}
 
-	public void salvaDipendente(Dipendente dipendente) {
-		dipendenteRepository.save(dipendente);
+	public Dipendente salvaDipendente(Dipendente dipendente) {
+		return dipendenteRepository.save(dipendente);
 	}
 
-	public Dipendente prelevaDipendente(Long idDipendente) {
+	public Dipendente mostraDipendente(Long idDipendente) {
 		return dipendenteRepository.findById(idDipendente).get();
 	}
 
@@ -35,8 +30,8 @@ public class DipendenteService {
 		dipendenteRepository.deleteById(idDipendente);
 	}
 
-	public void modificaDipendente(Dipendente dipendente) {
-		dipendenteRepository.save(dipendente);
+	public Dipendente modificaDipendente(Dipendente dipendente) {
+		return dipendenteRepository.save(dipendente);
 	}
 
 }

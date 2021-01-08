@@ -3,10 +3,6 @@ package it.fiani.progettoTurni.DTO;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -22,10 +18,7 @@ public class VeicoloDTO {
 
 	// ==================================================================================
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
 	private String codice;
 	private String targa;
 	private String enteDiAppartenenza;

@@ -4,12 +4,12 @@ import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+
+import com.sun.istack.NotNull;
 
 import lombok.Data;
 
@@ -26,16 +26,21 @@ public class TurnoDTO {
 
 	// ==================================================================================
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@NotNull
 	private VeicoloDTO veicolo;
+	@NotNull
+	@Size(min = 2, max = 3)
 	private List<DipendenteDTO> dipendenti;
+	@NotNull
 	private TipoTurno tipoTurno;
+	@NotNull
 	private TipoZona tipoZona;
+	@NotNull
 	private String postazione;
+	@NotNull
 	private LocalTime istanteInizio;
+	@NotNull
 	private LocalTime istanteFine;
 	private LocalTime istanteFineEffettivo;
 

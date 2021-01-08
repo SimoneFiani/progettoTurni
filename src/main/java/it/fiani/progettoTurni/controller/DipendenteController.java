@@ -28,27 +28,29 @@ public class DipendenteController {
 
 	@GetMapping
 	public List<DipendenteDTO> mostraLista() {
-		return dipendenteService.mostraListaDipendenti().stream().map(dipendente -> convertiADTO(dipendente))
+		return dipendenteService.mostraListaDipendenti().stream().map(dipendente -> toDTO(dipendente))
 				.collect(Collectors.toList());
 
 	}
 
 	@PostMapping
-	public void salvaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
-		dipendenteService.salvaDipendente(convertiAEntity(dipendenteDTO));
+	public DipendenteDTO salvaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
+		Dipendente dipendente = dipendenteService.salvaDipendente(toEntity(dipendenteDTO));
+		return toDTO(dipendente);
 	}
 
 	@GetMapping("/{idDipendente}")
 	public DipendenteDTO mostraDipendente(@PathVariable Long idDipendente) {
-		return convertiADTO(dipendenteService.prelevaDipendente(idDipendente));
+		return toDTO(dipendenteService.mostraDipendente(idDipendente));
 	}
 
 	@PutMapping("/{idDipendente}")
-	public void modificaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
-		if (dipendenteDTO.getId() == null) {
-			throw new IllegalArgumentException("l'id del dipendente non puo essere null");
+	public DipendenteDTO modificaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
+		if (dipendenteNonEsiste(dipendenteDTO)) {
+			throw new IllegalArgumentException("Il dipendente non esiste");
 		}
-		dipendenteService.modificaDipendente(convertiAEntity(dipendenteDTO));
+		Dipendente dipendente = dipendenteService.modificaDipendente(toEntity(dipendenteDTO));
+		return toDTO(dipendente);
 	}
 
 	@DeleteMapping("/{idDipendente}")
@@ -56,12 +58,16 @@ public class DipendenteController {
 		dipendenteService.cancellaDipendente(idDipendente);
 	}
 
-	public Dipendente convertiAEntity(DipendenteDTO dipendenteDTO) {
+	public Dipendente toEntity(DipendenteDTO dipendenteDTO) {
 		return modelMapper.map(dipendenteDTO, Dipendente.class);
 
 	}
 
-	public DipendenteDTO convertiADTO(Dipendente dipendente) {
+	public DipendenteDTO toDTO(Dipendente dipendente) {
 		return modelMapper.map(dipendente, DipendenteDTO.class);
+	}
+
+	private boolean dipendenteNonEsiste(DipendenteDTO dipendenteDTO) {
+		return dipendenteDTO.getId() == null;
 	}
 }

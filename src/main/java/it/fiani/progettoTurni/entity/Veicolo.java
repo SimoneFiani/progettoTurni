@@ -49,4 +49,9 @@ public class Veicolo {
 
 	// ==================================================================================
 
+	public NumeroDiTelefono aggiungiNumeroDiTelfono(NumeroDiTelefono numeroDiTelefono) {
+		numeriDiTelefono.add(numeroDiTelefono);
+//		TODO: come faccio a tornare il numero salvato?
+		return null;
+	}
 }

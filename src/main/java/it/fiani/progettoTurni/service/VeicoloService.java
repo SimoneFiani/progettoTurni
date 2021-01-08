@@ -2,38 +2,34 @@ package it.fiani.progettoTurni.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.fiani.progettoTurni.entity.Veicolo;
 import it.fiani.progettoTurni.repository.VeicoloRepository;
+import lombok.AllArgsConstructor;
 
 @Service
+@AllArgsConstructor
 public class VeicoloService {
 
 	VeicoloRepository veicoloRepository;
-
-	@Autowired
-	public VeicoloService(VeicoloRepository veicoloRepository) {
-		this.veicoloRepository = veicoloRepository;
-	}
 
 	public List<Veicolo> mostraListaVeicoli() {
 		return (List<Veicolo>) veicoloRepository.findAll();
 
 	}
 
-	public void salvaVeicolo(Veicolo veicolo) {
-		veicoloRepository.save(veicolo);
+	public Veicolo salvaVeicolo(Veicolo veicolo) {
+		return veicoloRepository.save(veicolo);
 
 	}
 
-	public Veicolo dettagliVeicolo(Long idVeicolo) {
+	public Veicolo mostraVeicolo(Long idVeicolo) {
 		return veicoloRepository.findById(idVeicolo).get();
 	}
 
-	public void modificaVeicolo(Veicolo veicolo) {
-		veicoloRepository.save(veicolo);
+	public Veicolo modificaVeicolo(Veicolo veicolo) {
+		return veicoloRepository.save(veicolo);
 
 	}
 

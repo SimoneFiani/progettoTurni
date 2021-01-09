@@ -23,7 +23,8 @@ public class DipendenteService {
 	}
 
 	public Dipendente mostraDipendente(Long idDipendente) {
-		return dipendenteRepository.findById(idDipendente).get();
+		return dipendenteRepository.findById(idDipendente)
+				.orElseThrow(() -> new NullPointerException("il dipendente non esiste"));
 	}
 
 	public void cancellaDipendente(Long idDipendente) {

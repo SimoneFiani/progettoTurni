@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import it.fiani.progettoTurni.entity.Dipendente;
 import it.fiani.progettoTurni.entity.Turno;
 import it.fiani.progettoTurni.repository.TurnoRepository;
 import lombok.AllArgsConstructor;
@@ -29,6 +30,28 @@ public class TurnoService {
 	public void cancellaTurno(Long idTurno) {
 		turnoRepository.deleteById(idTurno);
 
+	}
+
+	public boolean veicoloNonImpegnatoInAltroTurno(Turno turno) {
+
+		// TODO: da testare
+
+		Long idVeicoloCheMiStannoPassando = turno.getVeicolo().getId();
+		List<Turno> listaTurniDelDB = (List<Turno>) turnoRepository.findAll();
+
+		for (Turno t : listaTurniDelDB) {
+			t.getVeicolo().getId().equals(idVeicoloCheMiStannoPassando);
+			return false;
+		}
+		return true;
+	}
+
+	public boolean personaleNonImpegnatoInAltroTurno(Turno turno) {
+		List<Dipendente> dipendentiDelTurnoCheMiStannoPassando = turno.getDipendenti();
+
+		// TODO: da ultimare
+
+		return false;
 	}
 
 }

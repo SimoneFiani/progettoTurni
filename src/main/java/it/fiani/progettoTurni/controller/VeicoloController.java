@@ -28,6 +28,8 @@ public class VeicoloController {
 	private final VeicoloService veicoloService;
 	private final ModelMapper modelMapper;
 
+//============================================================================================================
+
 	@GetMapping
 	public List<VeicoloDTO> mostraLista() {
 		return veicoloService.mostraListaVeicoli().stream().map(veicolo -> toDTO(veicolo)).collect(Collectors.toList());
@@ -37,17 +39,6 @@ public class VeicoloController {
 	public VeicoloDTO salvaVeicolo(@RequestBody VeicoloDTO veicoloDTO) {
 		Veicolo veicolo = veicoloService.salvaVeicolo(toEntity(veicoloDTO));
 		return toDTO(veicolo);
-
-	}
-
-	@PostMapping("/{idVeicolo}/numeriDiTelefono")
-	public void aggiungiNumeroDiTelefono(@PathVariable Long idVeicolo,
-			@RequestBody NumeroDiTelefonoDTO numeroDiTelefonoDTO) {
-		Veicolo veicolo = veicoloService.mostraVeicolo(idVeicolo);
-		NumeroDiTelefono numeroDiTelefono = veicolo
-				.aggiungiNumeroDiTelfono(numeroDiTelefonoDTOToEntity(numeroDiTelefonoDTO));
-		veicoloService.modificaVeicolo(veicolo);
-
 	}
 
 	@GetMapping("/{idVeicolo}")
@@ -58,7 +49,7 @@ public class VeicoloController {
 
 	@PutMapping("/{idVeicolo}")
 	public VeicoloDTO modificaVeicolo(@RequestBody VeicoloDTO veicoloDTO) {
-		if (veicoloDTO.getId() == null) {
+		if (veicoloNonEsiste(veicoloDTO)) {
 			throw new IllegalArgumentException("l'id del dipendente non può esserre null");
 		} else {
 			Veicolo veicolo = veicoloService.modificaVeicolo(toEntity(veicoloDTO));
@@ -71,6 +62,22 @@ public class VeicoloController {
 		veicoloService.cancellaVeicolo(idVeicolo);
 
 	}
+
+//============================================================================================================
+
+	@PostMapping("/{idVeicolo}/numeriDiTelefono")
+	public void aggiungiNumeroDiTelefono(@PathVariable Long idVeicolo,
+			@RequestBody NumeroDiTelefonoDTO numeroDiTelefonoDTO) {
+		Veicolo veicolo = veicoloService.mostraVeicolo(idVeicolo);
+		NumeroDiTelefono numeroDiTelefono = veicolo
+				.aggiungiNumeroDiTelfono(numeroDiTelefonoDTOToEntity(numeroDiTelefonoDTO));
+		veicoloService.modificaVeicolo(veicolo);
+
+	}
+
+	// TODO: implemetare la modifica e la cancellazione del numero di telefono
+
+//============================================================================================================
 
 	public VeicoloDTO toDTO(Veicolo veicolo) {
 		return modelMapper.map(veicolo, VeicoloDTO.class);
@@ -87,5 +94,9 @@ public class VeicoloController {
 
 	private NumeroDiTelefono numeroDiTelefonoDTOToEntity(NumeroDiTelefonoDTO numeroDiTelefonoDTO) {
 		return modelMapper.map(numeroDiTelefonoDTO, NumeroDiTelefono.class);
+	}
+
+	private boolean veicoloNonEsiste(VeicoloDTO veicoloDTO) {
+		return veicoloDTO.getId() == null;
 	}
 }

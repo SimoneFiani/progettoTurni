@@ -25,7 +25,8 @@ public class VeicoloService {
 	}
 
 	public Veicolo mostraVeicolo(Long idVeicolo) {
-		return veicoloRepository.findById(idVeicolo).get();
+		return veicoloRepository.findById(idVeicolo)
+				.orElseThrow(() -> new NullPointerException("il veicolo non esiste"));
 	}
 
 	public Veicolo modificaVeicolo(Veicolo veicolo) {

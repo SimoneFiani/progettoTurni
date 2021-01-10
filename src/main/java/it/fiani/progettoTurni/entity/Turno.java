@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.validation.constraints.Size;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -39,16 +40,19 @@ public class Turno {
 	@ManyToOne
 	@NotNull
 	private Veicolo veicolo;
-
 	@OneToMany
+	@NotNull
+	@Size(min = 2, max = 3)
 	private List<Dipendente> dipendenti;
-
+	@NotNull
 	private TipoTurno tipoTurno;
+	@NotNull
 	private TipoZona tipoZona;
-
 	@NotNull
 	private String postazione;
+	@NotNull
 	private OffsetDateTime istanteInizio;
+	@NotNull
 	private OffsetDateTime istanteFine;
 	private OffsetDateTime istanteFineEffettivo;
 

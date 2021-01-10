@@ -32,7 +32,15 @@ public class DipendenteService {
 	}
 
 	public Dipendente modificaDipendente(Dipendente dipendente) {
-		return dipendenteRepository.save(dipendente);
+		if (dipendenteNonEsiste(dipendente)) {
+			throw new NullPointerException("il dipendente non esiste");
+		} else {
+			return dipendenteRepository.save(dipendente);
+		}
+	}
+
+	private boolean dipendenteNonEsiste(Dipendente dipendente) {
+		return dipendente.getId() == null;
 	}
 
 }

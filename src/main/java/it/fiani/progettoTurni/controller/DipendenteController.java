@@ -37,8 +37,7 @@ public class DipendenteController {
 
 	@PostMapping
 	public DipendenteDTO salvaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
-		Dipendente dipendente = dipendenteService.salvaDipendente(toEntity(dipendenteDTO));
-		return toDTO(dipendente);
+		return toDTO(dipendenteService.salvaDipendente(toEntity(dipendenteDTO)));
 	}
 
 	@GetMapping("/{idDipendente}")
@@ -48,11 +47,7 @@ public class DipendenteController {
 
 	@PutMapping("/{idDipendente}")
 	public DipendenteDTO modificaDipendente(@RequestBody DipendenteDTO dipendenteDTO) {
-		if (dipendenteNonEsiste(dipendenteDTO)) {
-			throw new IllegalArgumentException("Il dipendente non esiste");
-		}
-		Dipendente dipendente = dipendenteService.modificaDipendente(toEntity(dipendenteDTO));
-		return toDTO(dipendente);
+		return toDTO(dipendenteService.modificaDipendente(toEntity(dipendenteDTO)));
 	}
 
 	@DeleteMapping("/{idDipendente}")
@@ -71,7 +66,4 @@ public class DipendenteController {
 		return modelMapper.map(dipendente, DipendenteDTO.class);
 	}
 
-	private boolean dipendenteNonEsiste(DipendenteDTO dipendenteDTO) {
-		return dipendenteDTO.getId() == null;
-	}
 }

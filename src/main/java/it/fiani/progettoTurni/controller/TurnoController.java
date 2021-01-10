@@ -35,25 +35,17 @@ public class TurnoController {
 
 	@PostMapping
 	public TurnoDTO aggiungiTurno(@RequestBody TurnoDTO turnoDTO) {
-		Turno turno = toEntity(turnoDTO);
-		// trasformo il dto una volta sola
-
-		if (turnoService.veicoloNonImpegnatoInAltroTurno(turno)
-				|| turnoService.personaleNonImpegnatoInAltroTurno(turno)) {
-
-			turnoService.aggiungiTurno(turno);
-			return toDTO(turno);
-
-		} else {
-//			TODO: verificare coerenza exception
-			throw new IllegalArgumentException("Errore bho");
-		}
+		return toDTO(turnoService.aggiungiTurno(toEntity(turnoDTO)));
 	}
 
-	@PutMapping("/{idTurno")
-	public TurnoDTO modificaTurno(@PathVariable Long idTurno) {
-		Turno turno = turnoService.modificaTurno(idTurno);
-		return toDTO(turno);
+	@GetMapping("/{idTurno}")
+	public TurnoDTO dettaglioTurno(@PathVariable Long idTurno) {
+		return toDTO(turnoService.dettaglioTurno(idTurno));
+	}
+
+	@PutMapping("/{idTurno}")
+	public TurnoDTO modificaTurno(@RequestBody TurnoDTO turnoDTO) {
+		return toDTO(turnoService.modificaTurno(toEntity(turnoDTO)));
 	}
 
 	@DeleteMapping("/{idTurno}")

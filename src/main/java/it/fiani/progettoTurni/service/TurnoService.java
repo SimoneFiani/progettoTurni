@@ -4,8 +4,10 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import it.fiani.progettoTurni.entity.Dipendente;
 import it.fiani.progettoTurni.entity.Turno;
 import it.fiani.progettoTurni.repository.TurnoRepository;
+import it.fiani.progettoTurni.utility.DataUtility;
 import lombok.AllArgsConstructor;
 
 @Service
@@ -39,37 +41,42 @@ public class TurnoService {
 		turnoRepository.deleteById(idTurno);
 	}
 
-	public boolean veicoloNonImpegnatoInAltroTurno(Turno turno) {
-		// TODO: ottimizzare il findAll (query sul repository)
-//
-//		List<Turno> listaTurniDelDB = (List<Turno>) turnoRepository.findAll();
-//		for (Turno t : listaTurniDelDB) {
-//			if (t.getVeicolo().getId().equals(turno.getVeicolo().getId())
-//					&& t.getIstanteInizio().equals(turno.getIstanteInizio())) {
-//				return false;
-//			}
-//		}
-		return false;
+	public boolean veicoloNonImpegnatoInAltroTurno(Turno turnoA) {
+
+		List<Turno> listaTurniDelDB = (List<Turno>) turnoRepository.findAll();
+		for (Turno turnoB : listaTurniDelDB) {
+			if (turnoB.getVeicolo().getId().equals(turnoA.getVeicolo().getId())
+					&& DataUtility.iPeriodiSiSovrappongono(turnoA.getIstanteInizio(), turnoA.getIstanteFine(),
+							turnoB.getIstanteInizio(), turnoB.getIstanteFine())) {
+				return false;
+			}
+		}
+		return true;
 	}
 
-	public boolean personaleNonImpegnatoInAltroTurno(Turno turno) {
-//
-//		List<Dipendente> dipendentiDelTurnoCheMiStannoPassando = turno.getDipendenti();
-//		List<Turno> listaTurniNelDB = (List<Turno>) turnoRepository.findAll();
-//
-//		for (Turno t : listaTurniNelDB) {
-//			for (Dipendente d : t.getDipendenti()) {
-//				for (Dipendente D : dipendentiDelTurnoCheMiStannoPassando) {
-//					if (d.equals(D)) {
-//						return false;
-//					}
-//					;
-//
-//				}
-//			}
-//		}
-//
+	public boolean personaleNonImpegnatoInAltroTurno(Turno turnoA) {
+
+		List<Dipendente> dipendentiDelTurnoCheMiStannoPassando = turnoA.getDipendenti();
+		List<Turno> listaTurniNelDB = (List<Turno>) turnoRepository.findAll();
+
+		for (Turno turnoB : listaTurniNelDB) {
+
+			if (DataUtility.iPeriodiSiSovrappongono(turnoA.getIstanteInizio(), turnoA.getIstanteFine(),
+					turnoB.getIstanteInizio(), turnoB.getIstanteFine())) {
+
+				for (Dipendente dipendenteB : turnoB.getDipendenti()) {
+					for (Dipendente dipendenteA : dipendentiDelTurnoCheMiStannoPassando) {
+						if (dipendenteB.getId().equals(dipendenteA.getId())) {
+							return false;
+						}
+					}
+				}
+			} else {
+				return false;
+			}
+		}
 		return false;
+
 	}
 
 }

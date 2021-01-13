@@ -34,11 +34,17 @@ public class TurnoService {
 	}
 
 	public Turno modificaTurno(Turno turno) {
-		return turnoRepository.save(turno);
+		if (veicoloNonImpegnatoInAltroTurno(turno) || personaleNonImpegnatoInAltroTurno(turno)) {
+			return turnoRepository.save(turno);
+		} else {
+			throw new IllegalArgumentException("il veicolo o il personale modificato, è impegnato in un'altro turno");
+		}
+
 	}
 
 	public void cancellaTurno(Long idTurno) {
 		turnoRepository.deleteById(idTurno);
+
 	}
 
 	public boolean veicoloNonImpegnatoInAltroTurno(Turno turnoA) {
@@ -51,6 +57,7 @@ public class TurnoService {
 				return false;
 			}
 		}
+
 		return true;
 	}
 

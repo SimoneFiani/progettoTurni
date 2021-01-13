@@ -1,6 +1,5 @@
 package it.fiani.progettoTurni.DTO;
 
-import java.time.LocalTime;
 import java.time.OffsetDateTime;
 import java.util.List;
 
@@ -28,10 +27,10 @@ public class TurnoDTO {
 
 	private Long id;
 	@NotNull
-	private VeicoloDTO veicolo;
+	private Long idVeicolo;
 	@NotNull
 	@Size(min = 2, max = 3)
-	private List<DipendenteDTO> dipendenti;
+	private List<Long> idDipendenti;
 	@NotNull
 	private TipoTurno tipoTurno;
 	@NotNull
@@ -39,10 +38,10 @@ public class TurnoDTO {
 	@NotNull
 	private String postazione;
 	@NotNull
-	private LocalTime istanteInizio;
+	private OffsetDateTime istanteInizio;
 	@NotNull
-	private LocalTime istanteFine;
-	private LocalTime istanteFineEffettivo;
+	private OffsetDateTime istanteFine;
+	private OffsetDateTime istanteFineEffettivo;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;

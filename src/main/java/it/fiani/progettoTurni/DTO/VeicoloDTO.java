@@ -6,6 +6,7 @@ import java.util.List;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import it.fiani.progettoTurni.entity.NumeroDiTelefono;
 import lombok.Data;
 
 @Data
@@ -19,10 +20,12 @@ public class VeicoloDTO {
 	// ==================================================================================
 
 	private Long id;
+
+	private TipoVeicolo tipoVeicolo;
 	private String codice;
 	private String targa;
 	private String enteDiAppartenenza;
-	private List<NumeroDiTelefonoDTO> numeriDiTelefono;
+	private List<NumeroDiTelefono> numeriDiTelefono;
 
 	@CreationTimestamp
 	private OffsetDateTime instanteCreazione;

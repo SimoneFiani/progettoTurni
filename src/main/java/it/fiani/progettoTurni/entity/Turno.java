@@ -1,9 +1,12 @@
 package it.fiani.progettoTurni.entity;
 
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -43,10 +46,12 @@ public class Turno {
 	@OneToMany
 	@NotNull
 	@Size(min = 2, max = 3)
-	private List<Dipendente> dipendenti;
+	private List<Dipendente> dipendenti = new ArrayList<>();
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private TipoTurno tipoTurno;
 	@NotNull
+	@Enumerated(EnumType.STRING)
 	private TipoZona tipoZona;
 	@NotNull
 	private String postazione;
@@ -62,5 +67,9 @@ public class Turno {
 	private OffsetDateTime instanteUltimoAggiornamento;
 
 	// ==================================================================================
+
+	public void aggiungiDipendente(Dipendente dipedente) {
+		this.dipendenti.add(dipedente);
+	}
 
 }

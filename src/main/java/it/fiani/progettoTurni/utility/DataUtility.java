@@ -2,15 +2,7 @@ package it.fiani.progettoTurni.utility;
 
 import java.time.OffsetDateTime;
 
-import lombok.Data;
-
-@Data
 public class DataUtility {
-
-	private OffsetDateTime istanteInizioA;
-	private OffsetDateTime istanteFineA;
-	private OffsetDateTime istanteInizioB;
-	private OffsetDateTime istanteFineB;
 
 	public static boolean iPeriodiSiSovrappongono(OffsetDateTime istanteInizioA, OffsetDateTime istanteFineA,
 			OffsetDateTime istanteInizioB, OffsetDateTime istanteFineB) {

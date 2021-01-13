@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import it.fiani.progettoTurni.DTO.TurnoDTO;
 import it.fiani.progettoTurni.entity.Turno;
+import it.fiani.progettoTurni.service.DipendenteService;
 import it.fiani.progettoTurni.service.TurnoService;
+import it.fiani.progettoTurni.service.VeicoloService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -25,6 +27,8 @@ public class TurnoController {
 
 	private final ModelMapper modelMapper;
 	private final TurnoService turnoService;
+	private final VeicoloService veicoloService;
+	private final DipendenteService dipendenteService;
 
 //============================================================================================================	
 
@@ -60,6 +64,17 @@ public class TurnoController {
 	}
 
 	private Turno toEntity(TurnoDTO turnoDTO) {
-		return modelMapper.map(turnoDTO, Turno.class);
+		Turno turno = modelMapper.map(turnoDTO, Turno.class);
+
+		turno.setVeicolo(veicoloService.mostraVeicolo(turnoDTO.getIdVeicolo()));
+		for (Long idDipendente : turnoDTO.getIdDipendenti()) {
+			turno.aggiungiDipendente(dipendenteService.mostraDipendente(idDipendente));
+		}
+//		DateTimeFormatter formatoData = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+//		turno.setIstanteInizio(OffsetDateTime.parse(turnoDTO.getIstanteInizio(), formatoData));
+//		turno.setIstanteFine(OffsetDateTime.parse(turnoDTO.getIstanteFine(), formatoData));
+//		turno.setIstanteFineEffettivo(OffsetDateTime.parse(turnoDTO.getIstanteFineEffettivo(), formatoData));
+
+		return turno;
 	}
 }

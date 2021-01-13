@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,7 +34,7 @@ public class Veicolo {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
+	@Enumerated(EnumType.STRING)
 	private TipoVeicolo tipoVeicolo;
 	private String codice;
 	private String targa;
@@ -49,9 +51,8 @@ public class Veicolo {
 
 	// ==================================================================================
 
-	public NumeroDiTelefono aggiungiNumeroDiTelfono(NumeroDiTelefono numeroDiTelefono) {
+	public void aggiungiNumeroDiTelfono(NumeroDiTelefono numeroDiTelefono) {
 		numeriDiTelefono.add(numeroDiTelefono);
 //		TODO: come faccio a tornare il numero salvato?
-		return null;
 	}
 }
